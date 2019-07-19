@@ -6,30 +6,42 @@ class Register extends React.Component {
     this.state = {
       email: '',
       password: '',
-      name: ''
+      name: '',
+      age: '',
+      pet: ''
     }
   }
 
   onNameChange = (event) => {
-    this.setState({name: event.target.value})
+    this.setState({ name: event.target.value })
   }
 
   onEmailChange = (event) => {
-    this.setState({email: event.target.value})
+    this.setState({ email: event.target.value })
   }
 
   onPasswordChange = (event) => {
-    this.setState({password: event.target.value})
+    this.setState({ password: event.target.value })
+  }
+
+  onAgeChange = (event) => {
+    this.setState({ age: event.target.value })
+  }
+
+  onPetChange = (event) => {
+    this.setState({ pet: event.target.value })
   }
 
   onSubmitSignIn = () => {
     fetch('http://localhost:3000/register', {
       method: 'post',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
-        name: this.state.name
+        name: this.state.name,
+        age: this.state.age,
+        pet: this.state.pet
       })
     })
       .then(response => response.json())
@@ -76,6 +88,27 @@ class Register extends React.Component {
                   name="password"
                   id="password"
                   onChange={this.onPasswordChange}
+                />
+              </div>
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6" htmlFor="password">Age</label>
+                <input
+                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  type="number"
+                  name="age"
+                  id="age"
+                  min="1"
+                  onChange={this.onAgeChange}
+                />
+              </div>
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6" htmlFor="password">Pet</label>
+                <input
+                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  type="text"
+                  name="pet"
+                  id="pet"
+                  onChange={this.onPetChange}
                 />
               </div>
             </fieldset>
